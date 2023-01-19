@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package mini_tiktok.auth;
+package mini_tiktok.auth.proto;
 
 message Request {
     string user_id = 1;
