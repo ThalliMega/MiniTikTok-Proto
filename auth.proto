@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package mini_tiktok.auth;
+
+message Request {
+    string user_id = 1;
+    string token = 2;
+}
+
+enum StatusCode {
+    SUCCESS = 0;
+    FAIL = 1;
+}
+
+message Response {
+    StatusCode status_code = 1;
+}
