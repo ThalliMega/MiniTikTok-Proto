@@ -15,3 +15,7 @@ enum StatusCode {
 message Response {
     StatusCode status_code = 1;
 }
+
+service AuthService {
+    rpc Auth (Request) returns (Response);
+}
