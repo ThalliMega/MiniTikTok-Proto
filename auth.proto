@@ -2,36 +2,47 @@ syntax = "proto3";
 
 package mini_tiktok.auth.proto;
 
+/// The request sent by client when checking for authentication.
 message AuthRequest {
-    string user_id = 1;
+    uint32 user_id = 1;
     string token = 2;
 }
 
+/// The request sent by client when asking for token.
 message TokenRequest {
     string username = 1;
     string password = 2;
 }
 
+/// The response sent by server when client is checking for authentication.
 message AuthResponse {
     enum AuthStatusCode {
         SUCCESS = 0;
         FAIL = 1;
     }
 
+    /// Indicates whether this authentication is successful.
     AuthStatusCode status_code = 1;
 }
 
+/// The response sent by server when client is asking for token.
 message TokenResponse {
     enum TokenStatusCode {
         SUCCESS = 0;
         FAIL = 1;
     }
     
+    /// Indicates whether this request is valid.
     TokenStatusCode status_code = 1;
+    /// The token if succeed, otherwise an empty string.  
+    /// Token is valid for 3 days.
     string token = 2;
 }
 
 service AuthService {
+    /// Ask the server to authenticate the user.
     rpc Auth (AuthRequest) returns (AuthResponse);
+    /// Get the token of the user.  
+    /// Token is valid for 3 days.
     rpc RetriveToken (TokenRequest) returns (TokenResponse);
 }
