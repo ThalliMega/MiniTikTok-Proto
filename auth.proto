@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package mini_tiktok.auth.proto;
+package mini_tiktok.proto.auth;
 
 /// The request sent by client when checking for authentication.
 message AuthRequest {
@@ -31,7 +31,7 @@ message TokenResponse {
         SUCCESS = 0;
         FAIL = 1;
     }
-    
+
     /// Indicates whether this request is valid.
     TokenStatusCode status_code = 1;
     /// The token if succeed, otherwise an empty string.  
