@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package mini_tiktok.auth.proto;
 
+import "google/protobuf/wrappers.proto";
+
 /// The request sent by client when checking for authentication.
 message AuthRequest {
     uint32 user_id = 1;
@@ -37,6 +39,8 @@ message TokenResponse {
     /// The token if succeed, otherwise an empty string.  
     /// Token is valid for 3 days.
     string token = 2;
+    /// The id of the user.
+    uint32 user_id = 3;
 }
 
 service AuthService {
@@ -45,4 +49,7 @@ service AuthService {
     /// Get the token of the user.  
     /// Token is valid for 3 days.
     rpc RetriveToken (TokenRequest) returns (TokenResponse);
+    /// Get user id by username.
+    /// Returns 0 for the user does not exist.
+    rpc RetriveUserId (google.protobuf.StringValue) returns (google.protobuf.UInt32Value);
 }
