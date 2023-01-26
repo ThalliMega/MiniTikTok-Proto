@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package mini_tiktok.proto.feed;
-option go_package = "proto/feedpb";
+option go_package = "pb/feed";
 
 message Video {
     // 视频唯一标识

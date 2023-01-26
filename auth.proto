@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package mini_tiktok.proto.auth;
+option go_package = "pb/auth";
 
 /// The request sent by client when checking for authentication.
 message AuthRequest {
