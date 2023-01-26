@@ -18,8 +18,9 @@ message TokenRequest {
 /// The response sent by server when client is checking for authentication.
 message AuthResponse {
     enum AuthStatusCode {
-        SUCCESS = 0;
-        FAIL = 1;
+        UNSPECIFIED = 0;
+        SUCCESS = 1;
+        FAIL = 2;
     }
 
     /// Indicates whether this authentication is successful.
@@ -29,8 +30,9 @@ message AuthResponse {
 /// The response sent by server when client is asking for token.
 message TokenResponse {
     enum TokenStatusCode {
-        SUCCESS = 0;
-        FAIL = 1;
+        UNSPECIFIED = 0;
+        SUCCESS = 1;
+        FAIL = 2;
     }
 
     /// Indicates whether this request is valid.

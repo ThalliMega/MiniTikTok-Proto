@@ -12,8 +12,9 @@ message UserInfoRequest {
 
 message UserInfoResponse {
     enum UserInfoStatusCode {
-        SUCCESS = 0;
-        FAIL = 1;
+        UNSPECIFIED = 0;
+        SUCCESS = 1;
+        FAIL = 2;
     }
     
     /// Indicates whether the user exists.
@@ -26,8 +27,11 @@ message UserInfoResponse {
     uint32 follower_count = 4;
     /// Have I followed target?
     bool is_follow = 5;
+    /// The target user id.
+    uint32 user_id = 6;
 }
 
 service UserService {
     rpc GetInfo (UserInfoRequest) returns (UserInfoResponse);
+    rpc GetInfos (stream UserInfoRequest) returns (stream UserInfoRequest);
 }
