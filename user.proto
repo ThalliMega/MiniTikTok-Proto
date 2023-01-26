@@ -26,3 +26,7 @@ message UserInfoResponse {
     /// Have I followed target?
     bool is_follow = 5;
 }
+
+service UserService {
+    rpc GetInfo (UserInfoRequest) returns (UserInfoResponse);
+}
