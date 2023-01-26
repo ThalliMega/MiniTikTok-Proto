@@ -1,0 +1,130 @@
+syntax = "proto3";
+
+package mini_tiktok.feed.proto;
+option go_package = "proto/feedpb";
+
+message Video {
+  // 视频唯一标识
+  int64 id = 1;
+  // 视频作者信息
+  User author = 2;
+  // 视频播放地圳
+  string play_url = 3;
+  // 视频封面地址
+  string cover_url = 4;
+  // 视频的点赞总数
+  int64 favorite_count = 5;
+  // 视频的评论总数
+  int64 comment_count = 6;
+  // true-已点赞，false-未点赞
+  bool is_favorite = 7;
+  // 视频标题
+  string title = 8;
+}
+
+message User {
+  // 用户id
+  int64 id = 1;
+  // 用户名称
+  string name = 2;
+  // 关注总数
+  int64 follow_count = 3;
+  // 粉丝总数
+  int64 follower_count = 4;
+  // true-已关注，false-未关注
+  bool is_follow = 5;
+}
+
+message ListWatchVideosRequest {
+  // 限制返回视频的最新投稿时间戳 (s) 不填为当前时间
+  int64 lastest_time = 1;
+  // 用户id
+  int64 user_id = 2;
+}
+
+message ListWatchVideosResponse {
+  // 0-成功，非0-失败
+  int32 status_code = 1;
+  // 状态描述
+  string status_msg = 2;
+  // 视频列表
+  repeated Video videos = 3;
+  // 下次请求的lastest_time
+  int64 next_time = 4;
+}
+
+message ListPublishVideosRequest {
+  // 用户id
+  int64 user_id = 1;
+}
+
+message ListPublishVideosResponse {
+  // 0-成功，非0-失败
+  int32 status_code = 1;
+  // 状态描述
+  string status_msg = 2;
+  // 视频列表
+  repeated Video videos = 3;
+}
+
+message ListFavoriteVideosRequest {
+  // 用户id
+  int64 user_id = 1;
+}
+
+message ListFavoriteVideosResponse {
+  // 0-成功，非0-失败
+  int32 status_code = 1;
+  // 状态描述
+  string status_msg = 2;
+  // 视频列表
+  repeated Video videos = 3;
+}
+
+message PublishVideoRequest {
+  // 用户id
+  int64 user_id = 1;
+  // 视频标题
+  string title = 2;
+  // 视频播放地址
+  string play_url = 3;
+  // 视频封面地址
+  string cover_url = 4;
+}
+
+message PublishVideoResponse {
+  // 0-成功，非0-失败
+  int32 status_code = 1;
+  // 状态描述
+  string status_msg = 2;
+  // 视频信息
+  Video video = 3;
+}
+
+message FavoriteVideoRequest {
+  // 用户id
+  int64 user_id = 1;
+  // 视频id
+  int64 video_id = 2;
+}
+
+message FavoriteVideoResponse {
+  // 0-成功，非0-失败
+  int32 status_code = 1;
+  // 状态描述
+  string status_msg = 2;
+}
+
+
+service FeedService {
+  // 获取用户推送视频列表
+  rpc ListWatchVideos(ListWatchVideosRequest) returns (stream ListWatchVideosResponse) {}
+  // 获取用户投稿视频列表
+  rpc ListPublishVideos(ListPublishVideosRequest) returns (stream ListPublishVideosResponse) {}
+  // 获取用户喜欢视频列表
+  rpc ListFavoriteVideos(ListFavoriteVideosRequest) returns (stream ListFavoriteVideosResponse) {}
+  // 投稿视频
+  rpc PublishVideo(PublishVideoRequest) returns (PublishVideoResponse) {}
+  // 点赞视频
+  rpc FavoriteVideo(FavoriteVideoRequest) returns (FavoriteVideoResponse) {}
+}
