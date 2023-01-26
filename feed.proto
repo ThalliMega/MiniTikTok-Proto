@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package mini_tiktok.feed.proto;
+package mini_tiktok.proto.feed;
 option go_package = "proto/feedpb";
 
 message Video {
