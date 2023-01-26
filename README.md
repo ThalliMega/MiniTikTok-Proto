@@ -2,9 +2,9 @@
 
 [![Rust]](https://www.rust-lang.org "Rust") [![Golang]](https://go.dev/ "Golang")
 
-This is *just* a homework project using.
+This is *just* a homework project.
 
-in every proto file, add the following line:
+In every proto file, add the following line:
 
 ```proto
 package mini_tiktok.proto.xxx;
