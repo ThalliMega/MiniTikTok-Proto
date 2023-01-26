@@ -33,5 +33,5 @@ message UserInfoResponse {
 
 service UserService {
     rpc GetInfo (UserInfoRequest) returns (UserInfoResponse);
-    rpc GetInfos (stream UserInfoRequest) returns (stream UserInfoRequest);
+    rpc GetInfos (stream UserInfoRequest) returns (stream UserInfoResponse);
 }
