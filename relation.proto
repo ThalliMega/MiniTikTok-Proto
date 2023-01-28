@@ -23,8 +23,8 @@ message FollowActionRequest {
         UNFOLLOW = 1;
     }
 
-    // 用户鉴权 token
-    string token = 1;
+    // 用户 
+    int64 id = 1;
     // 对方用户 id
     int64 to_user_id = 2;
     // 关系操作码
@@ -40,10 +40,10 @@ message FollowActionResponse {
 
 
 message ListFollowRequest {
-    // 用户 id
-    int64 user_id = 1;
-    // 用户鉴权 token
-    string token = 2;
+    // 执行操作的用户 id
+    int64 id = 1;
+    // 目标用户 id
+    int64 user_id = 2;
 }
 
 message ListFollowResponse {
@@ -57,10 +57,10 @@ message ListFollowResponse {
 
 
 message ListFansRequest {
-    // 用户 id
-    int64 user_id = 1;
-    // 用户鉴权 token
-    string token = 2;
+    // 执行操作的用户 id
+    int64 id = 1;
+    // 目标用户 id
+    int64 user_id = 2;
 }
 
 message ListFansResponse {
@@ -74,10 +74,10 @@ message ListFansResponse {
 
 
 message ListFriendsRequest {
-    // 用户 id
-    int64 user_id = 1;
-    // 用户鉴权 token
-    string token = 2;
+    // 执行操作的用户 id
+    int64 id = 1;
+    // 目标用户 id
+    int64 user_id = 2;
 }
 
 message ListFriendsResponse {
