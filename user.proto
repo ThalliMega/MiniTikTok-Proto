@@ -15,7 +15,8 @@ message UserInfoResponse {
     enum UserInfoStatusCode {
         UNSPECIFIED = 0;
         SUCCESS = 1;
-        FAIL = 2;
+        AUTH_FAIL = 2;
+        TARGET_NOT_FOUND = 3;
     }
     
     /// Indicates whether the user exists.
@@ -33,7 +34,8 @@ message UserInfoResponse {
 }
 
 message UserInfoRequests {
-    repeated UserInfoRequest requests = 1;
+    string token = 1;
+    repeated uint32 user_ids = 2;
 }
 
 message UserInfoResponses {
