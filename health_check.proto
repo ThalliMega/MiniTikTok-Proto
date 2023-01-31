@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package mini_tiktok.proto.health;
-
-import "google/protobuf/empty.proto";
-
-service HealthChecker {
-    rpc Check (google.protobuf.Empty) returns (google.protobuf.Empty);
-}
