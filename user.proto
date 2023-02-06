@@ -5,37 +5,38 @@ package mini_tiktok.proto.user;
 option go_package = "pb/user";
 
 message UserInfoRequest {
-    /// The target user id.
-    uint32 user_id = 1;
-    /// Your own token.
-    string token = 2;
+    // The target user id.
+    uint32 target_id = 1;
+    // Your own id. Leave this to 0 if not authenticated.
+    uint32 self_id = 2;
 }
 
 message UserInfoResponse {
     enum UserInfoStatusCode {
         UNSPECIFIED = 0;
         SUCCESS = 1;
-        AUTH_FAIL = 2;
-        TARGET_NOT_FOUND = 3;
+        TARGET_NOT_FOUND = 2;
     }
     
-    /// Indicates whether the user exists.
+    // Indicates whether the user exists.
     UserInfoStatusCode status_code = 1;
-    /// Target user name.
+    // Target user name.
     string username = 2;
-    /// Total number of target's follows.
+    // Total number of target's follows.
     uint32 follow_count = 3;
-    /// Total number of target's followers.
+    // Total number of target's followers.
     uint32 follower_count = 4;
-    /// Have I followed target?
+    // Have I followed target?
     bool is_follow = 5;
-    /// The target user id.
+    // The target user id.
     uint32 user_id = 6;
 }
 
 message UserInfoRequests {
-    string token = 1;
-    repeated uint32 user_ids = 2;
+    // Your own id. Leave this to 0 if not authenticated.
+    uint32 self_id = 1;
+    // The target user ids.
+    repeated uint32 target_ids = 2;
 }
 
 message UserInfoResponses {
