@@ -5,13 +5,13 @@ option go_package = "pb/relation";
 
 message User {
     // 用户id
-    int64 id = 1;
+    uint32 id = 1;
     // 用户名称
     string name = 2;
     // 关注总数
-    int64 follow_count = 3;
+    uint32 follow_count = 3;
     // 粉丝总数
-    int64 follower_count = 4;
+    uint32 follower_count = 4;
     // true-已关注，false-未关注
     bool is_follow = 5;
 }
@@ -24,9 +24,9 @@ message FollowActionRequest {
     }
 
     // 用户 
-    int64 id = 1;
+    uint32 id = 1;
     // 对方用户 id
-    int64 to_user_id = 2;
+    uint32 to_user_id = 2;
     // 关系操作码
     FollowActionType action_type = 3;
 }
@@ -41,9 +41,9 @@ message FollowActionResponse {
 
 message ListFollowRequest {
     // 执行操作的用户 id
-    int64 id = 1;
+    uint32 id = 1;
     // 目标用户 id
-    int64 user_id = 2;
+    uint32 user_id = 2;
 }
 
 message ListFollowResponse {
@@ -58,9 +58,9 @@ message ListFollowResponse {
 
 message ListFansRequest {
     // 执行操作的用户 id
-    int64 id = 1;
+    uint32 id = 1;
     // 目标用户 id
-    int64 user_id = 2;
+    uint32 user_id = 2;
 }
 
 message ListFansResponse {
@@ -75,9 +75,9 @@ message ListFansResponse {
 
 message ListFriendsRequest {
     // 执行操作的用户 id
-    int64 id = 1;
+    uint32 id = 1;
     // 目标用户 id
-    int64 user_id = 2;
+    uint32 user_id = 2;
 }
 
 message ListFriendsResponse {
@@ -95,9 +95,9 @@ service RelationService {
     // 对其他用户进行 关注/取关 操作
     rpc FollowAction (FollowActionRequest) returns (FollowActionResponse) {}
     // 获取用户关注列表
-    rpc ListFollow (ListFollowRequest) returns (stream ListFollowResponse) {}
+    rpc ListFollow (ListFollowRequest) returns (ListFollowResponse) {}
     // 获取用户粉丝列表
-    rpc ListFans (ListFansRequest) returns (stream ListFansResponse) {}
+    rpc ListFans (ListFansRequest) returns (ListFansResponse) {}
     // 获取用户好友列表
-    rpc ListFriends (ListFriendsRequest) returns (stream ListFriendsResponse) {}
+    rpc ListFriends (ListFriendsRequest) returns (ListFriendsResponse) {}
 }
