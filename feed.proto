@@ -24,7 +24,7 @@ message Video {
 
 message User {
     // 用户id
-    int64 id = 1;
+    uint32 id = 1;
     // 用户名称
     string name = 2;
     // 关注总数
@@ -39,7 +39,7 @@ message ListWatchVideosRequest {
     // 限制返回视频的最新投稿时间戳 (s) 不填为当前时间
     int64 lastest_time = 1;
     // 用户id
-    int64 user_id = 2;
+    uint32 user_id = 2;
 }
 
 message ListWatchVideosResponse {
@@ -55,7 +55,7 @@ message ListWatchVideosResponse {
 
 message ListPublishVideosRequest {
     // 用户id
-    int64 user_id = 1;
+    uint32 user_id = 1;
 }
 
 message ListPublishVideosResponse {
@@ -69,7 +69,7 @@ message ListPublishVideosResponse {
 
 message ListFavoriteVideosRequest {
     // 用户id
-    int64 user_id = 1;
+    uint32 user_id = 1;
 }
 
 message ListFavoriteVideosResponse {
@@ -83,7 +83,7 @@ message ListFavoriteVideosResponse {
 
 message PublishVideoRequest {
     // 用户id
-    int64 user_id = 1;
+    uint32 user_id = 1;
     // 视频标题
     string title = 2;
     // 视频播放地址
@@ -103,7 +103,7 @@ message PublishVideoResponse {
 
 message FavoriteVideoRequest {
     // 用户id
-    int64 user_id = 1;
+    uint32 user_id = 1;
     // 视频id
     int64 video_id = 2;
 }
@@ -118,11 +118,11 @@ message FavoriteVideoResponse {
 
 service FeedService {
     // 获取用户推送视频列表
-    rpc ListWatchVideos(ListWatchVideosRequest) returns (stream ListWatchVideosResponse) {}
+    rpc ListWatchVideos(ListWatchVideosRequest) returns (ListWatchVideosResponse) {}
     // 获取用户投稿视频列表
-    rpc ListPublishVideos(ListPublishVideosRequest) returns (stream ListPublishVideosResponse) {}
+    rpc ListPublishVideos(ListPublishVideosRequest) returns (ListPublishVideosResponse) {}
     // 获取用户喜欢视频列表
-    rpc ListFavoriteVideos(ListFavoriteVideosRequest) returns (stream ListFavoriteVideosResponse) {}
+    rpc ListFavoriteVideos(ListFavoriteVideosRequest) returns (ListFavoriteVideosResponse) {}
     // 投稿视频
     rpc PublishVideo(PublishVideoRequest) returns (PublishVideoResponse) {}
     // 点赞视频
