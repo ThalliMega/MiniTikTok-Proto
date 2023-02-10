@@ -13,7 +13,7 @@ message Message {
     // 消息内容
     string content = 4;
     // 消息创建时间
-    string create_time = 5;
+    uint64 create_time = 5;
 }
 
 message ActionRequest {

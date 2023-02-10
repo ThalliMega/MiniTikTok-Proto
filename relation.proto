@@ -14,6 +14,27 @@ message User {
     uint32 follower_count = 4;
     // true-已关注，false-未关注
     bool is_follow = 5;
+    // 用户头像 url
+    string avatar = 6;
+}
+
+message FriendUser {
+    // 用户id
+    uint32 id = 1;
+    // 用户名称
+    string name = 2;
+    // 关注总数
+    uint32 follow_count = 3;
+    // 粉丝总数
+    uint32 follower_count = 4;
+    // true-已关注，false-未关注
+    bool is_follow = 5;
+    // 用户头像 url
+    string avatar = 6;
+    // 和该好友的最新聊天消息
+    string message = 7;
+    // message 消息的类型，0 => 当前请求用户接收的消息， 1 => 当前请求用户发送的消息
+    uint32 msg_type = 8;
 }
 
 message FollowActionRequest {
@@ -86,7 +107,7 @@ message ListFriendsResponse {
     // 状态描述
     string status_msg = 2;
     // 用户信息列表
-    repeated User user_list = 3;
+    repeated FriendUser user_list = 3;
 }
 
 
