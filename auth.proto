@@ -3,18 +3,18 @@ syntax = "proto3";
 package mini_tiktok.proto.auth;
 option go_package = "pb/auth";
 
-/// The request sent by client when checking for authentication.
+// The request sent by client when checking for authentication.
 message AuthRequest {
     string token = 1;
 }
 
-/// The request sent by client when asking for token.
+// The request sent by client when asking for token.
 message TokenRequest {
     string username = 1;
     string password = 2;
 }
 
-/// The response sent by server when client is checking for authentication.
+// The response sent by server when client is checking for authentication.
 message AuthResponse {
     enum AuthStatusCode {
         UNSPECIFIED = 0;
@@ -22,12 +22,12 @@ message AuthResponse {
         FAIL = 2;
     }
 
-    /// Indicates whether this authentication is successful.
+    // Indicates whether this authentication is successful.
     AuthStatusCode status_code = 1;
-    uint32 user_id = 2;
+    int64 user_id = 2;
 }
 
-/// The response sent by server when client is asking for token.
+// The response sent by server when client is asking for token.
 message TokenResponse {
     enum TokenStatusCode {
         UNSPECIFIED = 0;
@@ -35,19 +35,19 @@ message TokenResponse {
         FAIL = 2;
     }
 
-    /// Indicates whether this request is valid.
+    // Indicates whether this request is valid.
     TokenStatusCode status_code = 1;
-    /// The token if succeed, otherwise an empty string.  
-    /// Token is valid for 3 days.
+    // The token if succeed, otherwise an empty string.  
+    // Token is valid for 3 days.
     string token = 2;
-    /// The id of the user.
-    uint32 user_id = 3;
+    // The id of the user.
+    int64 user_id = 3;
 }
 
 service AuthService {
-    /// Ask the server to authenticate the user.
+    // Ask the server to authenticate the user.
     rpc Auth (AuthRequest) returns (AuthResponse);
-    /// Get the token of the user.  
-    /// Token is valid for 3 days.
+    // Get the token of the user.  
+    // Token is valid for 3 days.
     rpc RetriveToken (TokenRequest) returns (TokenResponse);
 }

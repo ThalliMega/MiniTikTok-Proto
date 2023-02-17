@@ -6,9 +6,9 @@ option go_package = "pb/user";
 
 message UserInfoRequest {
     // The target user id.
-    uint32 target_id = 1;
+    int64 target_id = 1;
     // Your own id. Leave this to 0 if not authenticated.
-    uint32 self_id = 2;
+    int64 self_id = 2;
 }
 
 message UserInfoResponse {
@@ -23,20 +23,20 @@ message UserInfoResponse {
     // Target user name.
     string username = 2;
     // Total number of target's follows.
-    uint32 follow_count = 3;
+    int64 follow_count = 3;
     // Total number of target's followers.
-    uint32 follower_count = 4;
+    int64 follower_count = 4;
     // Have I followed target?
     bool is_follow = 5;
     // The target user id.
-    uint32 user_id = 6;
+    int64 user_id = 6;
 }
 
 message UserInfoRequests {
     // Your own id. Leave this to 0 if not authenticated.
-    uint32 self_id = 1;
+    int64 self_id = 1;
     // The target user ids.
-    repeated uint32 target_ids = 2;
+    repeated int64 target_ids = 2;
 }
 
 message UserInfoResponses {
