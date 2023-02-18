@@ -33,7 +33,7 @@ message UserInfoResponse {
     string avatar = 7;
     string background_image = 8;
     string signature = 9;
-    string total_favorited = 10;
+    int64 total_favorited = 10;
     int64 work_count = 11;
     int64 favorite_count = 12;
 }
