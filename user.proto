@@ -30,6 +30,12 @@ message UserInfoResponse {
     bool is_follow = 5;
     // The target user id.
     int64 user_id = 6;
+    string avatar = 7;
+    string background_image = 8;
+    string signature = 9;
+    string total_favorited = 10;
+    int64 work_count = 11;
+    int64 favorite_count = 12;
 }
 
 message UserInfoRequests {
