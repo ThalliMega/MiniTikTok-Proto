@@ -4,50 +4,50 @@ package mini_tiktok.proto.user;
 
 option go_package = "pb/user";
 
-message UserInfoRequest {
-  // The target user id.
-  int64 target_id = 1;
-  // Your own id. Leave this to 0 if not authenticated.
-  int64 self_id = 2;
-}
-
-message UserInfoResponse {
-  enum UserInfoStatusCode {
-    UNSPECIFIED = 0;
-    SUCCESS = 1;
-    TARGET_NOT_FOUND = 2;
-  }
-
-  // Indicates whether the user exists.
-  UserInfoStatusCode status_code = 1;
-  // Target user name.
-  string username = 2;
-  // Total number of target's follows.
-  int64 follow_count = 3;
-  // Total number of target's followers.
-  int64 follower_count = 4;
-  // Have I followed target?
-  bool is_follow = 5;
-  // The target user id.
-  int64 user_id = 6;
-  string avatar = 7;
-  string background_image = 8;
-  string signature = 9;
-  int64 total_favorited = 10;
-  int64 work_count = 11;
-  int64 favorite_count = 12;
-}
-
-message UserInfoRequests {
-  // Your own id. Leave this to 0 if not authenticated.
+message FollowCheckRequests {
+  // Your own id.
   int64 self_id = 1;
   // The target user ids.
   repeated int64 target_ids = 2;
 }
 
-message UserInfoResponses { repeated UserInfoResponse responses = 1; }
+message IdWithInt64Values {
+  message IdWithInt64Value {
+    int64 user_id = 1;
+    int64 value = 2;
+  }
+  repeated IdWithInt64Value responses = 1;
+}
 
+message IdWithBoolValues {
+  message IdWithBoolValue {
+    int64 user_id = 1;
+    bool value = 2;
+  }
+  repeated IdWithBoolValue responses = 1;
+}
+
+message UserIds { repeated int64 user_ids = 1; }
+
+message IdWithStringValues {
+  message IdWithStringValue {
+    int64 user_id = 1;
+    string value = 2;
+  }
+  repeated IdWithStringValue responses = 1;
+}
+
+// If user id does not exist, returns an empty array.
 service UserService {
-  rpc GetInfo(UserInfoRequest) returns (UserInfoResponse);
-  rpc GetInfos(UserInfoRequests) returns (UserInfoResponses);
+  rpc GetUsernames(UserIds) returns (IdWithStringValues);
+  rpc GetFollowCounts(UserIds) returns (IdWithInt64Values);
+  rpc GetFollowerCounts(UserIds) returns (IdWithInt64Values);
+  // If target id does not exist, value is set to false.
+  rpc CheckFollows(FollowCheckRequests) returns (IdWithBoolValues);
+  rpc GetAvatars(UserIds) returns (IdWithStringValues);
+  rpc GetBackgroundImages(UserIds) returns (IdWithStringValues);
+  rpc GetSignatures(UserIds) returns (IdWithStringValues);
+  rpc GetTotalFavoriteds(UserIds) returns (IdWithInt64Values);
+  rpc GetWorkCounts(UserIds) returns (IdWithInt64Values);
+  rpc GetFavoriteCounts(UserIds) returns (IdWithInt64Values);
 }
