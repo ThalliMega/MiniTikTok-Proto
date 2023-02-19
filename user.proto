@@ -19,12 +19,9 @@ message IdWithInt64Values {
   repeated IdWithInt64Value responses = 1;
 }
 
-message IdWithBoolValues {
-  message IdWithBoolValue {
-    int64 user_id = 1;
-    bool value = 2;
-  }
-  repeated IdWithBoolValue responses = 1;
+message FollowCheckResponses {
+  // The people you follow.
+  repeated int64 target_ids = 1;
 }
 
 message UserIds { repeated int64 user_ids = 1; }
@@ -42,8 +39,7 @@ service UserService {
   rpc GetUsernames(UserIds) returns (IdWithStringValues);
   rpc GetFollowCounts(UserIds) returns (IdWithInt64Values);
   rpc GetFollowerCounts(UserIds) returns (IdWithInt64Values);
-  // If target id does not exist, value is set to false.
-  rpc CheckFollows(FollowCheckRequests) returns (IdWithBoolValues);
+  rpc CheckFollows(FollowCheckRequests) returns (FollowCheckResponses);
   rpc GetAvatars(UserIds) returns (IdWithStringValues);
   rpc GetBackgroundImages(UserIds) returns (IdWithStringValues);
   rpc GetSignatures(UserIds) returns (IdWithStringValues);
