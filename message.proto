@@ -5,11 +5,11 @@ option go_package = "pb/message";
 
 message Message {
     // 消息id
-    uint32 id = 1;
+    int64 id = 1;
     // 该消息接收者的id
-    uint32 to_user_id = 2;
+    int64 to_user_id = 2;
     // 该消息发送者的id
-    uint32 from_user_id =3;
+    int64 from_user_id =3;
     // 消息内容
     string content = 4;
     // 消息创建时间
@@ -18,11 +18,11 @@ message Message {
 
 message ActionRequest {
     // 执行操作的用户 id
-    uint32 id = 1;
+    int64 id = 1;
     // 对方用户id
-    uint32 to_user_id = 2;
+    int64 to_user_id = 2;
     // 1-发送消息
-    uint32 action_type = 3;
+    int32 action_type = 3;
     // 消息内容
     string content = 4;
 }
@@ -36,9 +36,11 @@ message ActionResponse {
 
 message ChatRequest {
     // 执行操作的用户 id
-    uint32 id = 1;
+    int64 id = 1;
     // 对方用户 id
-    uint32 to_user_id = 2;
+    int64 to_user_id = 2;
+    //上次最新消息的时间
+    int64 pre_msg_time = 3;
 }
 
 message ChatResponse {
