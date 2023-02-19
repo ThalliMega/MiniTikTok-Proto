@@ -1,4 +1,4 @@
-CREATE (:User { id: 0, username: "" })
+CREATE (:User { id: 0, username: "", password_hash: "", avatar: "", background_image: "", signature: "" })
 CREATE (:User)-[:FOLLOW]->(:User)
 CREATE (:User)-[:CREATE]->(:Work)
 CREATE (:User)-[:FAVORITE]->(:Work)
