@@ -34,6 +34,16 @@ message IdWithStringValues {
   repeated IdWithStringValue responses = 1;
 }
 
+message UserInfo {
+  int64 id = 1;
+  string username = 2;
+  string avatar = 3;
+  string background_img = 4;
+  string signature = 5;
+}
+
+message UserInfos { repeated UserInfo infos = 1; }
+
 // If user id does not exist, returns an empty array.
 service UserService {
   rpc GetUsernames(UserIds) returns (IdWithStringValues);
@@ -46,4 +56,5 @@ service UserService {
   rpc GetTotalFavoriteds(UserIds) returns (IdWithInt64Values);
   rpc GetWorkCounts(UserIds) returns (IdWithInt64Values);
   rpc GetFavoriteCounts(UserIds) returns (IdWithInt64Values);
+  rpc GetInfos(UserIds) returns (UserInfos);
 }
