@@ -75,5 +75,5 @@ service UserService {
   rpc GetWorkCounts(UserIds) returns (IdWithInt64Values);
   rpc GetFavoriteCounts(UserIds) returns (IdWithInt64Values);
   rpc GetInfos(UserIds) returns (UserInfos);
-  rpc GetFullInfos(UserIds) returns (FullUserInfos);
+  rpc GetFullInfos(FollowCheckRequests) returns (FullUserInfos);
 }
