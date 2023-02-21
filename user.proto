@@ -4,6 +4,7 @@ package mini_tiktok.proto.user;
 
 option go_package = "pb/user";
 
+// Does self follow targets?
 message FollowCheckRequests {
   // Your own id.
   int64 self_id = 1;
@@ -19,6 +20,7 @@ message IdWithInt64Values {
   repeated IdWithInt64Value responses = 1;
 }
 
+// All targets that are in the request targets && followed by self.
 message FollowCheckResponses {
   // The people you follow.
   repeated int64 target_ids = 1;
