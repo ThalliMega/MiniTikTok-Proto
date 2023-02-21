@@ -46,6 +46,22 @@ message UserInfo {
 
 message UserInfos { repeated UserInfo infos = 1; }
 
+message FullUserInfo {
+  int64 id = 1;                // 用户id
+  string name = 2;             // 用户名称
+  int64 follow_count = 3;      // 关注总数
+  int64 follower_count = 4;    // 粉丝总数
+  bool is_follow = 5;          // true-已关注，false-未关注
+  string avatar = 6;           // 用户头像
+  string background_image = 7; // 用户个人页顶部大图
+  string signature = 8;        // 个人简介
+  int64 total_favorited = 9;   // 获赞数量
+  int64 work_count = 10;       // 作品数量
+  int64 favorite_count = 11;   // 点赞数量
+}
+
+message FullUserInfos { repeated FullUserInfo infos = 1; }
+
 // If user id does not exist, returns an empty array.
 service UserService {
   rpc GetUsernames(UserIds) returns (IdWithStringValues);
@@ -59,4 +75,5 @@ service UserService {
   rpc GetWorkCounts(UserIds) returns (IdWithInt64Values);
   rpc GetFavoriteCounts(UserIds) returns (IdWithInt64Values);
   rpc GetInfos(UserIds) returns (UserInfos);
+  rpc GetFullInfos(UserIds) returns (FullUserInfos);
 }
